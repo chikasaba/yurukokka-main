@@ -1,0 +1,10 @@
+html {
+    padding-bottom: 1px;
+    background-image: url(../images/background.png);
+}
+body{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1rem;
+    background-color: white;
+}
