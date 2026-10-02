@@ -1,60 +1,62 @@
-    /*
-     * GoatCounter cumulative page-view counter
-     *
-     * Replace YOURCODE with your GoatCounter site code.
-     *
-     * Example:
-     * https://example.goatcounter.com/counter//.json
-     */
+// GoatCounterのサイトコード
+const GOATCOUNTER_CODE = "chikaservermc";
 
-    const goatCounterCode = "chikaservermc";
+// GoatCounterのカウンターAPI
+const COUNTER_URL =
+    `https://${GOATCOUNTER_CODE}.goatcounter.com/counter//.json`;
 
-    const counterURL =
-        `https://${goatCounterCode}.goatcounter.com/counter//.json`;
+// PVを取得してHTMLに表示
+async function loadPageViews() {
 
+    // id="pageviews" のHTML要素を取得
+    const element = document.getElementById("pageviews");
 
-    async function loadPageViews() {
-
-        const element = document.getElementById("pageviews");
-
-        try {
-
-            const response = await fetch(counterURL);
-
-            if (!response.ok) {
-                throw new Error("GoatCounter request failed");
-            }
-
-            const data = await response.json();
-
-            /*
-             * GoatCounter returns the cumulative count
-             * for the requested path.
-             */
-
-            const count = Number(data.count);
-
-            if (Number.isFinite(count)) {
-
-                element.textContent =
-                    count.toLocaleString();
-
-            } else {
-
-                element.textContent = "—";
-
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Could not load GoatCounter statistics:",
-                error
-            );
-
-            element.textContent = "—";
-        }
+    // HTML側に対象要素がなければ終了
+    if (!element) {
+        return;
     }
 
+    try {
 
-    loadPageViews();
+        // GoatCounter APIにアクセス
+        const response = await fetch(COUNTER_URL);
+
+        // HTTPエラーの場合
+        if (!response.ok) {
+            throw new Error(
+                `GoatCounter API Error: ${response.status}`
+            );
+        }
+
+        // JSONとしてデータを取得
+        const data = await response.json();
+
+        // countを数字として取得
+        const count = Number(data.count);
+
+        // 正常な数字ならHTMLに表示
+        if (Number.isFinite(count)) {
+
+            element.textContent =
+                count.toLocaleString("ja-JP");
+
+        } else {
+
+            // 数字として認識できなかった場合
+            element.textContent = "—";
+        }
+
+    } catch (error) {
+
+        // 通信エラーなど
+        console.error(
+            "ページビュー数の取得に失敗しました:",
+            error
+        );
+
+        element.textContent = "—";
+    }
+}
+
+// 関数を実行
+loadPageViews();
