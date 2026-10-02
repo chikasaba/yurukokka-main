@@ -3,8 +3,8 @@ html {
     background-image: url(../images/background.png);
 }
 body{
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
     padding: 1rem;
     background-color: white;
 }
