@@ -1,62 +1,110 @@
-// GoatCounterのサイトコード
 const GOATCOUNTER_CODE = "chikaservermc";
 
-// GoatCounterのカウンターAPI
+
+// ========================================
+// カウンターAPI
+// ========================================
+
 const COUNTER_URL =
     `https://${GOATCOUNTER_CODE}.goatcounter.com/counter//.json`;
 
-// PVを取得してHTMLに表示
+
+
+// ========================================
+// PV取得
+// ========================================
+
 async function loadPageViews() {
 
-    // id="pageviews" のHTML要素を取得
-    const element = document.getElementById("pageviews");
+    // <span id="pageviews"> を取得
+    const element =
+        document.getElementById("pageviews");
 
-    // HTML側に対象要素がなければ終了
+
+    // HTML側に存在しなければ何もしない
     if (!element) {
+        console.error(
+            'id="pageviews" が見つかりません。'
+        );
+
         return;
     }
 
+
     try {
 
-        // GoatCounter APIにアクセス
-        const response = await fetch(COUNTER_URL);
+        // GoatCounterへアクセス
+        const response =
+            await fetch(COUNTER_URL);
 
-        // HTTPエラーの場合
+
+        // HTTPエラー確認
         if (!response.ok) {
+
             throw new Error(
-                `GoatCounter API Error: ${response.status}`
+                `HTTP Error: ${response.status}`
             );
+
         }
 
-        // JSONとしてデータを取得
-        const data = await response.json();
 
-        // countを数字として取得
-        const count = Number(data.count);
+        // JSONを取得
+        const data =
+            await response.json();
 
-        // 正常な数字ならHTMLに表示
-        if (Number.isFinite(count)) {
 
-            element.textContent =
-                count.toLocaleString("ja-JP");
+        // デバッグ用
+        console.log("GoatCounter response:", data);
+
+
+        // GoatCounterのcountを取得
+        //
+        // GoatCounterの仕様上、
+        // countは文字列として返されます。
+        //
+        // 例:
+        // {
+        //     "count": "3"
+        // }
+        //
+        const count = data.count;
+
+
+        // countが存在するか確認
+        if (
+            count !== undefined &&
+            count !== null
+        ) {
+
+            element.textContent = count;
 
         } else {
 
-            // 数字として認識できなかった場合
             element.textContent = "—";
+
+            console.error(
+                "GoatCounterからcountを取得できませんでした。",
+                data
+            );
+
         }
+
 
     } catch (error) {
 
-        // 通信エラーなど
         console.error(
-            "ページビュー数の取得に失敗しました:",
+            "GoatCounterからPVを取得できませんでした:",
             error
         );
 
         element.textContent = "—";
+
     }
 }
 
-// 関数を実行
+
+// ========================================
+// 実行
+// ========================================
+
 loadPageViews();
