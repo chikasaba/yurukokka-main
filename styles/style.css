@@ -30,3 +30,26 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+.media-title{
+    display: none;
+}
+@media (max-width: 1050px) {
+    .media-title{
+        display: block;
+    }
+    .normal-title{
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    html{
+        font-size: 14px;
+    }
+    header{
+        flex-direction: column;
+    }
+    body{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
