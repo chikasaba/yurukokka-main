@@ -2,10 +2,12 @@ html {
     padding-bottom: 1px;
     background-image: url(../images/background.webp);
 }
+main {
+    padding: 0.5rem 1rem;
+}
 body{
     margin-left: 20%;
     margin-right: 20%;
-    padding: 1rem;
     background-color: white;
 }
 .fit-picture{
@@ -15,20 +17,52 @@ body{
     height: auto;
     margin: 0 auto;
 }
+
+/*試験追加・ボタン要素*/
+.main-nav {
+    display: flex;
+    justify-content: left;
+    gap: 2rem;
+    padding: 0.1rem 2rem;
+}
+.main-nav a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #d8d8d8;
+    border: 1px solid #b8b8b8;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+.main-nav a:hover {
+    background: #c5c5c5;
+}
+/*試験追加・ボタン要素 ここまで*/
+
 .join-button{
     font-size: 1.5rem;
     text-decoration: none;
     display: inline-block;
     padding: 10px 20px;
     color: white;
-    background-color: blue;
+    background-color: rgb(13, 13, 175);
     align-items: center;
     border-radius: 1rem;
 }
 header{
+    padding: 0.5rem 1rem;
+    background-color: burlywood;
+}
+.headline{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+footer{
+    text-align: center;
+    background-color:lightblue ;
+    padding: 0.5rem 1rem;
 }
 .media-title{
     display: none;
