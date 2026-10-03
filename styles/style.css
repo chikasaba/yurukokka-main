@@ -79,10 +79,14 @@ footer{
         margin-right: 20%;
     }
 }
-@media (min-width: 2400px){
+@media (min-width: 2560px){
     body{
         margin-left: 25%;
         margin-right: 25%;
+    }
+    /*イースターエッグ・フルサイズ画像表示モード*/
+    .fit-picture{
+        max-width: 8000px;
     }
 }
 @media (max-width: 900px) {
@@ -109,6 +113,10 @@ footer{
 @media (max-width: 450px){
     .headline{
         display: block;
-        align-items: center;
+    }
+    .join-button{
+        width: 80%;
+        display: flex;
+        justify-content: center;
     }
 }
