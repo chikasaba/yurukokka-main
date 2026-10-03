@@ -6,8 +6,8 @@ main {
     padding: 0.5rem 1rem;
 }
 body{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 15%;
+    margin-right: 15%;
     background-color: white;
 }
 .fit-picture{
@@ -21,12 +21,12 @@ body{
 /*試験追加・ボタン要素*/
 .main-nav {
     display: flex;
+    flex-wrap: wrap;
     justify-content: left;
     gap: 2%;
 }
 .main-nav a {
     display: block;
-    flex-wrap: wrap;
     padding: 0.5rem 1.5rem;
     text-decoration: none;
     color: #000000;
@@ -73,7 +73,19 @@ footer{
         margin-right: 10%;
     }
 }
-@media (max-width: 800px) {
+@media (min-width: 1450px){
+    body{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+@media (min-width: 2400px){
+    body{
+        margin-left: 25%;
+        margin-right: 25%;
+    }
+}
+@media (max-width: 900px) {
     html{
         font-size: 14px;
     }
