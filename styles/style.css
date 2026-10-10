@@ -17,6 +17,9 @@ body{
     height: auto;
     margin: 0 auto;
 }
+h2{
+    font-size: x-large;
+}
 
 /*試験追加・ボタン要素*/
 .main-nav {
